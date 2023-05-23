@@ -1,58 +1,64 @@
 import 'package:flutter/material.dart';
-import 'package:shop_app/components/default_button.dart';
-import 'package:shop_app/models/Product.dart';
-import 'package:shop_app/size_config.dart';
-
-import 'color_dots.dart';
-import 'product_description.dart';
-import 'top_rounded_container.dart';
-import 'product_images.dart';
+import 'package:green_card/constants.dart';
+import 'package:green_card/screens/oun_card/oun_card_screen.dart';
+import 'package:green_card/size_config.dart';
 
 class Body extends StatelessWidget {
-  final Product product;
-
-  const Body({Key? key, required this.product}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: [
-        ProductImages(product: product),
-        TopRoundedContainer(
-          color: Colors.white,
-          child: Column(
-            children: [
-              ProductDescription(
-                product: product,
-                pressOnSeeMore: () {},
-              ),
-              TopRoundedContainer(
-                color: Color(0xFFF6F7F9),
-                child: Column(
-                  children: [
-                    ColorDots(product: product),
-                    TopRoundedContainer(
-                      color: Colors.white,
-                      child: Padding(
-                        padding: EdgeInsets.only(
-                          left: SizeConfig.screenWidth * 0.15,
-                          right: SizeConfig.screenWidth * 0.15,
-                          bottom: getProportionateScreenWidth(40),
-                          top: getProportionateScreenWidth(15),
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          Stack(children: [
+            Image.asset(
+              'assets/images/coffe.jpeg',
+              fit: BoxFit.fill,
+              width: SizeConfig.screenWidth,
+            ),
+            Positioned(
+              bottom: 0,
+                left: 0,right: 0,
+                child: Container(
+                  height: 30,
+                  decoration: BoxDecoration(
+                    color: kPrimaryColor.withOpacity(0.8),
+
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)
+                    ),child:Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text('Qatarat Coffe', style: TextStyle(
+                                color: Colors.white,
+                                fontSize: getProportionateScreenWidth(16),
+                                fontWeight: FontWeight.w600
+                            ),),
+                            Row(
+                              children: [
+                                Icon(Icons.circle,color: Colors.white,size: getProportionateScreenWidth(10),),
+                                Icon(Icons.circle,color: Colors.white,size: getProportionateScreenWidth(10),),
+                                Icon(Icons.circle,color: Colors.white,size: getProportionateScreenWidth(10),),
+                              ],
+                            )
+                          ],
                         ),
-                        child: DefaultButton(
-                          text: "Add To Cart",
-                          press: () {},
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ),
-      ],
+                  ),
+                )
+            )
+          ]),
+          InkWell(
+            onTap: ()=>Navigator.pushNamed(context, MyCardScreen.routeName),
+            child: Image.asset(
+              'assets/images/detailcoffe.png',
+              fit: BoxFit.fill,
+              width: SizeConfig.screenWidth,
+            ),
+          )
+        ],
+
+
+      ),
     );
   }
 }

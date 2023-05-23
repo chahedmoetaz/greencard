@@ -9,33 +9,37 @@ class DiscountBanner extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      // height: 90,
-      width: double.infinity,
-      margin: EdgeInsets.all(getProportionateScreenWidth(20)),
-      padding: EdgeInsets.symmetric(
-        horizontal: getProportionateScreenWidth(20),
-        vertical: getProportionateScreenWidth(15),
-      ),
-      decoration: BoxDecoration(
-        color: Color(0xFF4A3298),
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: Text.rich(
-        TextSpan(
-          style: TextStyle(color: Colors.white),
-          children: [
-            TextSpan(text: "A Summer Surpise\n"),
-            TextSpan(
-              text: "Cashback 20%",
-              style: TextStyle(
-                fontSize: getProportionateScreenWidth(24),
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ],
+    return Column(
+      children: [
+        SizedBox(height: getProportionateScreenHeight(10)),
+        Text(
+          "YOUR GREEN PRICE",
+          style: TextStyle(
+            color: Colors.lightGreen,
+            fontSize: getProportionateScreenWidth(17),
+            fontWeight: FontWeight.w900,
+          ),
         ),
-      ),
+        SizedBox(height: getProportionateScreenHeight(10)),
+        Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: getProportionateScreenWidth(20),
+          ),
+          child: Container(
+            height: getProportionateScreenWidth(90),
+            width: double.infinity,
+
+            decoration: BoxDecoration(
+              color: Colors.grey.shade200,
+              borderRadius: BorderRadius.circular(20),
+                image: new DecorationImage(
+                    fit: BoxFit.fill,
+                    image: AssetImage("assets/images/images.jpeg")
+                )
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

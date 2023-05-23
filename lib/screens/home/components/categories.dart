@@ -1,32 +1,72 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../../../constants.dart';
 import '../../../size_config.dart';
 
 class Categories extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Map<String, dynamic>> categories = [
-      {"icon": "assets/icons/Flash Icon.svg", "text": "Flash Deal"},
-      {"icon": "assets/icons/Bill Icon.svg", "text": "Bill"},
-      {"icon": "assets/icons/Game Icon.svg", "text": "Game"},
-      {"icon": "assets/icons/Gift Icon.svg", "text": "Daily Gift"},
-      {"icon": "assets/icons/Discover.svg", "text": "More"},
+      {"icon": Icons.add, "text": "Free\nOffers"},
+      {"icon": Icons.card_giftcard, "text": "Send\nGifts"},
+      {"icon": Icons.calculate, "text": "Hot\nDreals"},
+
     ];
-    return Padding(
-      padding: EdgeInsets.all(getProportionateScreenWidth(20)),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: List.generate(
-          categories.length,
-          (index) => CategoryCard(
-            icon: categories[index]["icon"],
-            text: categories[index]["text"],
-            press: () {},
+    return Column(
+      children: [
+        SizedBox(height: getProportionateScreenHeight(10)),
+        Text(
+          "SPECIAL DETAILS",
+          style: TextStyle(
+            color: Colors.lightGreen,
+            fontSize: getProportionateScreenWidth(17),
+            fontWeight: FontWeight.w900,
           ),
         ),
-      ),
+        SizedBox(height: getProportionateScreenHeight(10)),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
+          children: [
+            Container(
+              height: getProportionateScreenWidth(100),
+              width: getProportionateScreenWidth(20),
+              decoration: BoxDecoration(
+                  color: Colors.lightGreen,
+                borderRadius: BorderRadius.only(topRight:Radius.circular(10),bottomRight:  Radius.circular(10))
+              ),
+              child: Center(
+                child: MyVerticalText("USE YOUR CARD"),
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: List.generate(
+                categories.length,
+                (index) => CategoryCard(
+                  icon: categories[index]["icon"],
+                  text: categories[index]["text"],
+                  press: () {},
+                ),
+              ),
+            ),
+            Container(
+              height: getProportionateScreenWidth(100),
+              width: getProportionateScreenWidth(20),
+              decoration: BoxDecoration(
+                  color: Colors.lightGreen,
+                  borderRadius: BorderRadius.only(topLeft:Radius.circular(10),bottomLeft:  Radius.circular(10))
+              ),
+              child: Center(
+                child: MyVerticalText("LIVE CHAT"),
+              ),
+            ),
+          ],
+        ),
+      ],
     );
   }
 }
@@ -39,32 +79,53 @@ class CategoryCard extends StatelessWidget {
     required this.press,
   }) : super(key: key);
 
-  final String? icon, text;
+  final String?  text;
+  final IconData? icon;
   final GestureTapCallback press;
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: press,
-      child: SizedBox(
-        width: getProportionateScreenWidth(55),
-        child: Column(
-          children: [
-            Container(
-              padding: EdgeInsets.all(getProportionateScreenWidth(15)),
-              height: getProportionateScreenWidth(55),
-              width: getProportionateScreenWidth(55),
-              decoration: BoxDecoration(
-                color: Color(0xFFFFECDF),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: SvgPicture.asset(icon!),
+    return Padding(
+      padding:  EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(8)),
+      child: GestureDetector(
+        onTap: press,
+        child: Container(
+          padding: EdgeInsets.all(getProportionateScreenWidth(15)),
+          height: getProportionateScreenWidth(100),
+          width: getProportionateScreenWidth(95),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            border: Border.all(color: kPrimaryColor)
+          ),
+          child: FittedBox(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(icon!,color: kPrimaryColor,),
+                SizedBox(height: 2),
+                FittedBox(child: Text(text!,textAlign:TextAlign.center,
+                  style: TextStyle(color:kPrimaryColor,fontSize: getProportionateScreenWidth(16)
+                      ,fontWeight: FontWeight.w900),))
+              ],
             ),
-            SizedBox(height: 5),
-            Text(text!, textAlign: TextAlign.center)
-          ],
+          ),
         ),
       ),
+    );
+  }
+}
+class MyVerticalText extends StatelessWidget {
+  final String text;
+
+  const MyVerticalText(this.text);
+
+  @override
+  Widget build(BuildContext context) {
+    return RotatedBox(
+      quarterTurns: -1,
+      child: Text(text, style: TextStyle(color:Colors.white,fontSize: getProportionateScreenWidth(10),
+          fontWeight: FontWeight.w800)),
     );
   }
 }

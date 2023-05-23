@@ -11,11 +11,7 @@ class SearchField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: SizeConfig.screenWidth * 0.6,
-      decoration: BoxDecoration(
-        color: kSecondaryColor.withOpacity(0.1),
-        borderRadius: BorderRadius.circular(15),
-      ),
+      width: getProportionateScreenWidth(250),
       child: TextField(
         onChanged: (value) => print(value),
         decoration: InputDecoration(
@@ -25,8 +21,9 @@ class SearchField extends StatelessWidget {
             border: InputBorder.none,
             focusedBorder: InputBorder.none,
             enabledBorder: InputBorder.none,
-            hintText: "Search product",
-            prefixIcon: Icon(Icons.search)),
+            hintText: "You can search by product, marchant name, tag or brand.",
+            hintStyle: TextStyle(fontSize:getProportionateScreenWidth(14),color: Colors.grey.shade500)
+            ),
       ),
     );
   }

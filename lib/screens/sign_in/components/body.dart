@@ -1,60 +1,135 @@
 import 'package:flutter/material.dart';
-import 'package:shop_app/components/no_account_text.dart';
-import 'package:shop_app/components/socal_card.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:green_card/screens/sign_up/sign_up_screen.dart';
 import '../../../size_config.dart';
-import 'sign_form.dart';
 
 class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: SizedBox(
-        width: double.infinity,
-        child: Padding(
-          padding:
-              EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                SizedBox(height: SizeConfig.screenHeight * 0.04),
-                Text(
-                  "Welcome Back",
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: getProportionateScreenWidth(28),
-                    fontWeight: FontWeight.bold,
+    return SizedBox(
+      width: double.infinity,
+      child: Stack(
+        children: [
+          Image.asset("assets/images/background.png",fit: BoxFit.fill,width: double.infinity,height: double.infinity,),
+          Padding(
+            padding:
+                EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  SizedBox(height: SizeConfig.screenHeight * 0.12),
+
+
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: Colors.white
+                    )
+                    ,width: getProportionateScreenWidth(350),
+                    child: Column(
+                      children: [
+                        SizedBox(height: getProportionateScreenHeight(25)),
+                        Text(
+                          "Welcome To Green Card",
+                          style: TextStyle(
+                            color: Colors.lightGreen,
+                            fontSize: getProportionateScreenWidth(24),
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Text(
+                          "Sign in with your email and password  \nor continue with social media",
+                          textAlign: TextAlign.center,
+                        ),
+                        SizedBox(height: SizeConfig.screenHeight * 0.05),
+                        Column(
+                          children: [
+                            Text("@",style: TextStyle(color: Colors.blueAccent,
+                              fontSize: getProportionateScreenWidth(36),
+                              fontWeight: FontWeight.w900,),
+                            ),
+                            Text(
+                              "By Email",
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: getProportionateScreenWidth(18),
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+
+                          ],
+                        ),
+                        SizedBox(height: getProportionateScreenHeight(25)),
+                        Column(
+                          children: [
+                            SvgPicture.asset("assets/icons/google-icon.svg",height: getProportionateScreenWidth(35)
+                              ,width: getProportionateScreenWidth(70),
+                            ),
+                            Text(
+                              "By Google",
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: getProportionateScreenWidth(18),
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+
+                          ],
+                        ),
+                        SizedBox(height: getProportionateScreenHeight(25)),
+                        Column(
+                          children: [
+                            SvgPicture.asset("assets/icons/facebook-2.svg",height: getProportionateScreenWidth(35)
+                              ,width: getProportionateScreenWidth(70),
+                            ),
+                            Text(
+                              "By Facebook",
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: getProportionateScreenWidth(18),
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+
+                          ],
+                        ),
+                        SizedBox(height: getProportionateScreenHeight(50)),
+                      ],
+                    ),
                   ),
-                ),
-                Text(
-                  "Sign in with your email and password  \nor continue with social media",
-                  textAlign: TextAlign.center,
-                ),
-                SizedBox(height: SizeConfig.screenHeight * 0.08),
-                SignForm(),
-                SizedBox(height: SizeConfig.screenHeight * 0.08),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SocalCard(
-                      icon: "assets/icons/google-icon.svg",
-                      press: () {},
-                    ),
-                    SocalCard(
-                      icon: "assets/icons/facebook-2.svg",
-                      press: () {},
-                    ),
-                    SocalCard(
-                      icon: "assets/icons/twitter.svg",
-                      press: () {},
-                    ),
-                  ],
-                ),
-                SizedBox(height: getProportionateScreenHeight(20)),
-                NoAccountText(),
-              ],
+
+
+                  SizedBox(height: SizeConfig.screenHeight * 0.1),
+                  Column(
+                    children: [
+                      InkWell(
+                        onTap: () => Navigator.pushNamed(context, SignUpScreen.routeName),
+                        child: Text(
+                          "REGISTER",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: getProportionateScreenWidth(28),
+                            fontWeight: FontWeight.w900,
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: getProportionateScreenHeight(25)),
+                      Text(
+                        "GUEST",
+                        style: TextStyle(
+                          color: Colors.white54,
+                          fontSize: getProportionateScreenWidth(26),
+                          fontWeight: FontWeight.w900,
+                        ),
+                      ),
+
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
-        ),
+        ],
       ),
     );
   }
