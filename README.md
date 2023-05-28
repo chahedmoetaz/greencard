@@ -14,3 +14,7 @@ You don't need to depend on anyone to solve different situations, because in the
 - Pay with QR Code
 - View average consumption by period
 - Indicate establishments that you want to be able to use your benefit, if you are not yet part of our network
+
+
+## feel free to contact us : https://wa.me/21654120687 or chahedmoetaz@gmail.com
+
